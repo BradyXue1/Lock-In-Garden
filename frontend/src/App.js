@@ -55,13 +55,25 @@ function PlantShelf() {
   const slots = Array.from({ length: 15 }, (_, i) => i + 1);
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>🌱 Plant Shelf</h1>
+    <div
+      style={{
+        position: "fixed",    // sticks to viewport
+        bottom: "0",          // docked at bottom
+        left: "0",
+        right: "0",
+        width: "100%",        // full width bar
+        padding: "20px 0",    // some breathing room
+      }}
+    >
       <div
         style={{
+          width: "66%",
+          margin: "0 auto",
           display: "grid",
-          gridTemplateColumns: "repeat(5, 1fr)", // 5 slots per row
-          gap: "20px",
+          gridTemplateColumns: "repeat(5, 200px)",
+          columnGap: "12px",     
+          rowGap: "12px",        
+          justifyContent: "center",
           marginTop: "20px",
         }}
       >
