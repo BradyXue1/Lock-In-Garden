@@ -23,22 +23,24 @@ plants=[
     {"id":15,"name":"Parsnip","watered":0},
 ]
 
+goals=[
+    {"id":1,"title":"Eat meals","completed":0},
+    {"id":2,"title":"Drink water","completed":0},    
+    {"id":3,"title":"Sleep","completed":0}
+]
+
 @app.route('/')
 def home():
     return "Hello from Flask!"
 
 # New route to return sample goals
-@app.route('/goals')
+@app.route('/goals', methods=['GET'])
 def get_goals():
-    sample_goals = [
-        {"id": 1, "title": "Exercise daily", "completed": False},
-        {"id": 2, "title": "Read a book", "completed": True},
-        {"id": 3, "title": "Meditate", "completed": False}
-    ]
-    return jsonify(sample_goals)
+    return jsonify(goals)
 
 @app.route('/plants', methods=['GET'])
 def get_plants():
     return jsonify(plants)
+
 if __name__ == '__main__':
     app.run(debug=True)
