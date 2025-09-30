@@ -1,6 +1,9 @@
-
+from flask_cors import CORS
 from flask import Flask, jsonify
+
+
 app = Flask(__name__)
+CORS(app, origins=["http://localhost:3000", "http://localhost:5000"])
 
 plants=[
     {"id":1,"name":"Tomato","watered":0},
@@ -34,5 +37,8 @@ def get_goals():
     ]
     return jsonify(sample_goals)
 
+@app.route('/plants', methods=['GET'])
+def get_plants():
+    return jsonify(plants)
 if __name__ == '__main__':
     app.run(debug=True)
