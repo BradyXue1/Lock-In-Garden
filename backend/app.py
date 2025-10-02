@@ -24,11 +24,17 @@ plants=[
 ]
 
 goals=[
-    {"id":1,"title":"Eat meals","completed":0},
-    {"id":2,"title":"Drink water","completed":0},    
-    {"id":3,"title":"Sleep","completed":0}
+    {"id":1,"title":"Eat meals","count":0, "target":3, "pass":2, "fail": [0,1]},
+    {"id":2,"title":"Drink water", "count":0, "target":8, "pass":[6,7], "fail": [0,5]},    
+    {"id":3,"title":"Sleep", "count":0, "target":8, "pass":[6,7], "fail": [0,5]},
 ]
 
+quests=[
+    {"id":1, "title": "Log in 3 times", "count":0, "target":3, "pass":3, "fail":[0,2]},
+    {"id":2, "title": "Water your plants a total of 10 times", "count":0, "target":10, "pass":10, "fail":[0,9]},
+    {"id":3, "title": "Level up a plant", "count":0, "target":1, "pass":1, "fail":0},
+    
+]
 @app.route('/')
 def home():
     return "Hello from Flask!"
@@ -40,6 +46,10 @@ def get_goals():
 @app.route('/plants', methods=['GET'])
 def get_plants():
     return jsonify(plants)
+
+@app.route('/quests', methods=['GET'])
+def get_quests():
+    return jsonify(quests)
 
 if __name__ == '__main__':
     app.run(debug=True)
