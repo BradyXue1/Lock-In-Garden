@@ -1,6 +1,6 @@
 from flask_cors import CORS
 from flask import Flask, jsonify
-
+from flask import request
 
 app = Flask(__name__)
 CORS(app, origins=["http://localhost:3000", "http://localhost:5000"])
@@ -32,9 +32,39 @@ goals=[
 quests=[
     {"id":1, "title": "Log in 3 times", "count":0, "target":3, "pass":3, "fail":[0,2]},
     {"id":2, "title": "Water your plants a total of 10 times", "count":0, "target":10, "pass":10, "fail":[0,9]},
-    {"id":3, "title": "Level up a plant", "count":0, "target":1, "pass":1, "fail":0},
-    
+    {"id":3, "title": "Level up a plant", "count":0, "target":1, "pass":1, "fail":0}, 
 ]
+
+@app.route('/plants/<int:plant_id>/water', methods=['POST'])
+def water_plant(plant_id):
+    for plant in plants:
+        if plant["id"] == plant_id:
+            plant["watered"] += 1   
+            return jsonify(plant)
+    return jsonify({"error": "Plant not found"}), 404
+
+@app.route('/plants/reset', methods=['POST'])
+def reset_plants():
+    global plants
+    plants = [
+        {"id":1,"name":"Tomato","watered":0, "location":2},
+        {"id":2,"name":"Basil","watered":0, "location":-1},
+        {"id":3,"name":"Carrot","watered":0, "location":-1},
+        {"id":4,"name":"Potato","watered":0, "location":-1},
+        {"id":5,"name":"Wheat","watered":0, "location":-1},
+        {"id":6,"name":"Beetroot","watered":0, "location":-1},
+        {"id":7,"name":"Sunflower","watered":0, "location":-1},
+        {"id":8,"name":"Rose","watered":0, "location":-1},
+        {"id":9,"name":"Tulip","watered":0, "location":4},
+        {"id":10,"name":"Strawberry","watered":0, "location":3},
+        {"id":11,"name":"Marigold","watered":0, "location":-1},
+        {"id":12,"name":"Lily","watered":0, "location":-1},
+        {"id":13,"name":"Petunia","watered":0, "location":-1},
+        {"id":14,"name":"Pumpkin","watered":0, "location":-1},
+        {"id":15,"name":"Parsnip","watered":0, "location":-1},
+    ]
+    return jsonify(plants)
+
 @app.route('/')
 def home():
     return "Hello from Flask!"
