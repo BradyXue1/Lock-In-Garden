@@ -18,3 +18,15 @@ def reset_goals():
     for goal in goals:
         goal["count"] = 0
     return goals
+
+def is_goal_completed(goal_id):
+    for goal in goals:
+        if goal["id"] == goal_id:
+            return goal["count"] >= goal["target"]
+    return False
+
+def did_goal_fail(goal_id):
+    for goal in goals:
+        if goal["id"] == goal_id:
+            return goal["count"] in goal["fail"]
+    return False
