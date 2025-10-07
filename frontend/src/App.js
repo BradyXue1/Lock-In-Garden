@@ -1,14 +1,27 @@
-import React from "react";
-import GoalsList from "./App_components/GoalsList";
+import React, { useState, useEffect } from "react";
 import PlantShelf from "./App_components/PlantShelf";
-import Gambling from "./App_components/Gambling";
+import GoalsList from "./App_components/GoalsList";
 
-export default function App() {
+function App() {
+  const [plants, setPlants] = useState([]);
+
+  const fetchPlants = () => {
+    fetch("http://localhost:5000/plants")
+      .then((res) => res.json())
+      .then((data) => setPlants(data))
+      .catch((err) => console.error("Error fetching plants:", err));
+  };
+
+  useEffect(() => {
+    fetchPlants();
+  }, []);
+
   return (
     <>
-      <GoalsList />
-      <PlantShelf />
-      <Gambling />
+      <GoalsList fetchPlants={fetchPlants} />
+      <PlantShelf plants={plants} setPlants={setPlants} />
     </>
   );
 }
+
+export default App;
