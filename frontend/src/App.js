@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PlantShelf from "./App_components/PlantShelf";
 import GoalsList from "./App_components/GoalsList";
+import Gambling from "./App_components/Gambling";
 
 function App() {
   const [plants, setPlants] = useState([]);
@@ -20,6 +21,7 @@ function App() {
     <>
       <GoalsList fetchPlants={fetchPlants} />
       <PlantShelf plants={plants} setPlants={setPlants} />
+      <Gambling />
     </>
   );
 }

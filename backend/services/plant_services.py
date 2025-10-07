@@ -1,7 +1,7 @@
 plants = [
     {"id":1,"name":"Tomato 🍅","watered":0, "waterable":False, "location":2, "goal_id":1},
-    {"id":2,"name":"Strawberry 🍓","watered":0, "waterable":False, "location":4, "goal_id":2},
-    {"id":3,"name":"Sunflower 🌻","watered":0, "waterable":False, "location":3, "goal_id":3},
+    {"id":2,"name":"Sunflower 🌻","watered":0, "waterable":False, "location":3, "goal_id":2},
+    {"id":3,"name":"Strawberry 🍓","watered":0, "waterable":False, "location":4, "goal_id":3},
 ]
 '''
     Future plants?
